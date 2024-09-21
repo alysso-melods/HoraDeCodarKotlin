@@ -1,8 +1,11 @@
+fimport kotlin.system.exitProcess
+
 fun main()
 {
     var saldo = 1000.00
     val senha = "3589"
-    val extrato = " Depósito: R$50.00\n " +
+    val extrato =
+            " Depósito: R$50.00\n " +
             "Comprou Death Stranding (Director's Cut): R$113.00\n " +
             "Depósito: R$200.00\n " +
             "Comprou Lego The Office Set: R$1390.00\n"
@@ -13,7 +16,7 @@ fun main()
     while (true) {
         println(
             "Menu:\n" +
-                    "1 - Saldo\n" +
+                    "1 Saldo\n" +
                     "2 - Extrato\n" +
                     "3 - Saque\n" +
                     "4 - Depósito\n" +
@@ -23,25 +26,30 @@ fun main()
         )
         val opcaoEscolhida = readlnOrNull() ?: ""
 
-        when (opcaoEscolhida)
-        {
-            "1" -> acessarSaldo(senha, saldo)
-            "2" -> verExtrato(senha, extrato)
-            "3" -> saldo = realizarSaque(senha, saldo)
-            "4" -> saldo = realizarDeposito(saldo, extrato)
-            "5" -> saldo = realizarTransferencia(senha, saldo)
-            "6" -> {
-                println("$nome, foi um prazer ter você por aqui")
-            }
-            else -> println("ERRO: Opção inválida. Tente novamente.")
+        if (opcaoEscolhida == "1") {
+            acessarSaldo(senha, saldo)
+        } else if (opcaoEscolhida == "2") {
+            verExtrato(senha, extrato)
+        } else if (opcaoEscolhida == "3") {
+            saldo = realizarSaque(senha, saldo)
+        } else if (opcaoEscolhida == "4") {
+            saldo = realizarDeposito(saldo, extrato)
+        } else if (opcaoEscolhida == "5") {
+            saldo = realizarTransferencia(senha, saldo)
+        } else if (opcaoEscolhida == "6") {
+            println("$nome, foi um prazer ter você por aqui")
+            exitProcess(0)
+        } else {
+            println("ERRO: Opção inválida. Tente novamente.")
         }
+
     }
 }
 
 fun acessarSaldo(senha:String, saldo:Double)
 {
     print("Insira sua senha: ")
-    val senhaInformada = readlnOrNull() ?: ""
+    val senhaInformada = readlnOrNull() ?:""
     if (senhaInformada == senha)
     {
         println("Seu saldo atual é: R$$saldo\n")
