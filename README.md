@@ -1,2 +1,2 @@
 # HoraDeCodarKotlin
-Exercícios básicos em Kotlin (INSTITUTO PROA)
+Exercícios introdutórios de Kotlin (INSTITUTO PROA)
